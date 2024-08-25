@@ -13,15 +13,21 @@ function App() {
     ReactGA.initialize('G-JXFT01DHQD'); // Substitueix 'G-XXXXXXXXXX' per l'ID de mesura de Google Analytics
   }, []);
 
-  usePageTracking(); // Utilitza el hook per fer el seguiment de les pàgines
-
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<IndexPage />} />
-        <Route path="/stats" element={<StatsPage />} />
-      </Routes>
+      <TrackedRoutes />
     </Router>
+  );
+}
+
+function TrackedRoutes() {
+  usePageTracking(); // Ensure the hook is used inside a component that is within Router
+
+  return (
+    <Routes>
+      <Route path="/" element={<IndexPage />} />
+      <Route path="/stats" element={<StatsPage />} />
+    </Routes>
   );
 }
 
