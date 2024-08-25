@@ -1,0 +1,317 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: poppins;
+    background-color: #2e2e2e;
+    color: #ffffff;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    background-color: #2e2e2e;
+}
+
+.custom-logo img {
+    max-height: 50px;
+    width: auto;
+}
+
+.custom-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.custom-nav-links a {
+    color: #ffffff;
+    margin-left: 30px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 20px;
+}
+
+.custom-nav-links a:hover {
+    font-weight: bold;
+}
+
+.custom-menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.custom-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.custom-text-overlay h1 {
+    font-size: 5rem;
+    font-family: poppins;
+    font-weight: 700;
+    margin: 0;
+    opacity: 0;
+    margin-bottom: 50px;
+    transform: translateY(-100px);
+    transition: opacity 2s ease-out, transform 2s ease-out;
+}
+
+.custom-text-overlay h2 {
+    font-size: 1.5rem;
+    font-family: poppins;
+    font-weight: 1;
+    margin: 10px 0 20px;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 2s ease-out, transform 2s ease-out;
+}
+
+.custom-slide-in {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 2s ease-out, transform 2s ease-out;
+}
+
+.custom-slide-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.custom-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: opacity 0.4s ease;
+    opacity: 0;
+    z-index: 100;
+    position: relative;
+    pointer-events: auto;
+}
+
+.custom-btn.show {
+    opacity: 1;
+}
+
+.custom-btn:hover {
+    font-weight: bold;
+}
+
+.custom-btn:active {
+    background-color: #2e2e2e;
+    font-weight: bold;
+    color: white;
+}
+
+.custom-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+.custom-row, .custom-first-row, .custom-second-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.custom-second-row img{
+    flex: 1 1 calc(12.5% - 10px); /* Ajust per tenir 8 imatges per fila */
+    margin: 5px;
+    max-width: calc(12.5% - 10px); /* Ajust per tenir 8 imatges per fila */
+    height: auto;
+    width: 60px;
+    object-fit: contain; /* Ajusta la imatge dins del contenidor */
+}
+
+.custom-img {
+    height: auto;
+    width: 60px; /* Permet que la mida es mantingui proporcional */
+}
+
+.custom-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.custom-fade-in.show {
+    opacity: 0.2;
+    transform: translateY(0);
+}
+
+.custom-footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #2e2e2e;
+    position: relative;
+    margin-top: 20px;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.custom-h6 {
+    font-size: 12px;
+    font-family: 'poppins';
+    font-weight: bold
+}
+
+@media only screen and (min-width: 1440px) {
+    .custom-container {
+        max-width: 1400px;
+    }
+
+    .custom-second-row img {
+        flex: 1 1 calc(12.5% - 10px);
+    }
+
+    .custom-img {
+        height: auto;
+        width: 160px;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    .custom-navbar {
+        padding: 20px 40px;
+    }
+
+    .custom-nav-links a {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .custom-second-row img {
+        flex: 1 1 calc(25% - 10px);
+    }
+
+    .custom-img {
+        height: auto;
+        width: 120px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .custom-navbar {
+        padding: 20px 30px;
+    }
+
+    .custom-nav-links a {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .custom-second-row img {
+        flex: 1 1 calc(20% - 10px);
+    }
+
+    .custom-img {
+        height: auto;
+        width: 150px;
+    }
+
+    .custom-text-overlay {
+        margin-top: 2rem;
+    }
+
+    .custom-text-overlay h1 {
+        font-size: 3rem;
+    }
+
+    .custom-text-overlay h2 {
+        font-size: 1rem;
+    }
+
+    .custom-img {
+        height: auto;
+        width: 90px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .custom-logo-container {
+        justify-content: space-between;
+        gap: 200px;
+    }
+
+    .custom-menu-icon {
+        display: block;
+    }
+
+    .custom-navbar {
+        flex-direction: column;
+        padding: 10px 20px;
+    }
+
+    .custom-nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: #2e2e2e;
+        width: 100%;
+        padding: 20px 0;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .custom-nav-links a {
+        margin: 10px 0;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+    }
+
+    .custom-nav-links.show {
+        display: flex;
+    }
+
+    .custom-container {
+        padding: 0 10px;
+    }
+
+    .custom-text-overlay {
+        margin-top: 2rem;
+    }
+
+    .custom-text-overlay h1 {
+        font-size: 2rem;
+    }
+
+    .custom-text-overlay h2 {
+        font-size: 0.8rem;
+    }
+
+    .custom-img {
+        height: auto;
+        width: calc(15% - 10px); /* Disminueix la mida de la imatge */
+    }
+
+    .custom-second-row img {
+        flex: 1 1 calc(15% - 10px); /* Ajust per tenir 3 imatges per fila */
+        margin: 5px;
+        max-width: calc(15% - 10px); /* Ajust per tenir 3 imatges per fila */
+    }
+}
