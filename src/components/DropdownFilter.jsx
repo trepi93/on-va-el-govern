@@ -3,13 +3,13 @@ import Select from 'react-select';
 
 const DropdownFilter = ({ options, selectedOption, onSelect }) => {
   const handleChange = selectedOption => {
-    onSelect(selectedOption); // Crida la funció que es passa com a prop
+    onSelect(selectedOption); 
   };
 
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
-      width: 200,  // Fixed width, adjust as necessary
+      width: 200,  
       minWidth: 250,
       maxWidth: 250,
       borderColor: state.isFocused ? 'white' : '#555',
@@ -21,7 +21,7 @@ const DropdownFilter = ({ options, selectedOption, onSelect }) => {
     }),
     menu: (provided) => ({
       ...provided,
-      width: 250,  // Ensure the dropdown menu matches the fixed width
+      width: 250,  
     }),
   };
 
@@ -32,9 +32,9 @@ const DropdownFilter = ({ options, selectedOption, onSelect }) => {
       options={options}
       placeholder="Escriu una opció"
       isSearchable={true}
-      isClearable={true} /* Permet deseleccionar l'opció */
+      isClearable={true} 
       classNamePrefix="react-select"
-      styles={customStyles} // Apply custom styles here
+      styles={customStyles}
     />
   );
 };

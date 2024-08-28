@@ -5,10 +5,10 @@ const DataTable = ({ filteredData }) => {
   const [data, setData] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
 
-  // Función para preparar los datos a partir de filteredData
+
   const prepareTableData = () => {
     return filteredData.map(event => {
-      // Extraer solo la fecha (sin la hora)
+
       const date = event["Data"].split(' ')[0];
 
       return {
@@ -22,7 +22,7 @@ const DataTable = ({ filteredData }) => {
   useEffect(() => {
     const preparedData = prepareTableData();
     setData(preparedData);
-  }, [filteredData]); // Dependencia de los datos filtrados
+  }, [filteredData]); 
 
   const sortedData = React.useMemo(() => {
     let sortableData = [...data];

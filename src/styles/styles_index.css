@@ -45,23 +45,23 @@ html, body {
 }
 
 .custom-text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative; 
     text-align: center;
     color: white;
     z-index: 10;
     pointer-events: none;
+    width: 100%; 
 }
 
-.custom-text-overlay h1 {
+.custom-first-row h1 {
+    position: absolute;
+    left: 40%;
+    top: 10%;
     font-size: 5rem;
     font-family: poppins;
     font-weight: 700;
     margin: 0;
     opacity: 0;
-    margin-bottom: 50px;
     transform: translateY(-100px);
     transition: opacity 2s ease-out, transform 2s ease-out;
 }
@@ -90,8 +90,7 @@ html, body {
 .custom-btn {
     display: inline-block;
     padding: 10px 20px;
-    margin-top: 20px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #000000;
     background-color: #ffffff;
     border-radius: 20px;
@@ -113,6 +112,8 @@ html, body {
 
 .custom-btn:active {
     background-color: #2e2e2e;
+    border-color: white;
+    border-width: 1px;
     font-weight: bold;
     color: white;
 }
@@ -120,7 +121,7 @@ html, body {
 .custom-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     max-width: 100%;
     height: auto;
     margin: 0 auto;
@@ -130,29 +131,39 @@ html, body {
 .custom-row, .custom-first-row, .custom-second-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     margin: 20px 0;
 }
 
+.custom-first-row{
+    margin-left: 11rem
+}
+
 .custom-second-row img{
-    flex: 1 1 calc(12.5% - 10px); /* Ajust per tenir 8 imatges per fila */
+    flex: 1 1 calc(12.5% - 10px); 
     margin: 5px;
-    max-width: calc(12.5% - 10px); /* Ajust per tenir 8 imatges per fila */
+    max-width: 160px; 
     height: auto;
-    width: 60px;
-    object-fit: contain; /* Ajusta la imatge dins del contenidor */
+    object-fit: contain; 
+    cursor: pointer;
 }
 
 .custom-img {
     height: auto;
-    width: 60px; /* Permet que la mida es mantingui proporcional */
+    width: 70px; 
+    cursor: pointer;
+}
+
+.custom-img:hover {
+    opacity: 1 !important; 
+    transition: opacity 0.1s ease-in-out; 
 }
 
 .custom-fade-in {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
+    transition: opacity 1s ease-out, transform 0s ease-out;
 }
 
 .custom-fade-in.show {
@@ -165,16 +176,43 @@ html, body {
     padding: 10px;
     background-color: #2e2e2e;
     position: relative;
-    margin-top: 20px;
+    margin-top: 15px;
     bottom: 0;
     width: 100%;
 }
 
 
 .custom-h6 {
-    font-size: 12px;
-    font-family: 'poppins';
-    font-weight: bold
+    font-size: 10px !important;
+    font-family: 'poppins' !important;
+    font-weight: lighter !important;
+}
+
+.custom-img-container {
+    position: relative;
+    display: inline-block;
+    
+}
+
+.custom-img-container img {
+    display: block;
+}
+
+.custom-img-container .overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Fons negre transparent */
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.8rem; /* Ajusta la mida del text si cal */
+}
+
+.custom-img-container:hover .overlay {
+    opacity: 1;
 }
 
 @media only screen and (min-width: 1440px) {
@@ -184,11 +222,13 @@ html, body {
 
     .custom-second-row img {
         flex: 1 1 calc(12.5% - 10px);
+        max-width: 160px; 
     }
 
     .custom-img {
         height: auto;
         width: 160px;
+        cursor: pointer;
     }
 }
 
@@ -202,13 +242,32 @@ html, body {
         padding: 15px;
     }
 
+    .custom-first-row{
+        margin-left: 8rem
+    }
+
     .custom-second-row img {
         flex: 1 1 calc(25% - 10px);
+        max-width: 110px; 
     }
 
     .custom-img {
         height: auto;
-        width: 120px;
+        width: 110px;
+        cursor: pointer;
+    }
+
+    .custom-first-row h1 {
+        position: absolute;
+        left: 28%;
+        top: 10%;
+        font-size: 4rem;
+        font-family: poppins;
+        font-weight: 700;
+        margin: 0;
+        opacity: 0;
+        transform: translateY(-100px);
+        transition: opacity 2s ease-out, transform 2s ease-out;
     }
 }
 
@@ -222,32 +281,36 @@ html, body {
         padding: 15px;
     }
 
-    .custom-second-row img {
-        flex: 1 1 calc(20% - 10px);
+    .custom-first-row{
+        margin-left: 7rem
     }
 
-    .custom-img {
-        height: auto;
-        width: 150px;
+
+    .custom-second-row img {
+        flex: 1 1 calc(20% - 10px);
+        max-width: 100px;
     }
 
     .custom-text-overlay {
-        margin-top: 2rem;
+        margin-top: 1rem;
     }
 
-    .custom-text-overlay h1 {
+    .custom-first-row h1 {
         font-size: 3rem;
+        left: 35%;
     }
 
-    .custom-text-overlay h2 {
+    .custom-first-row h2 {
         font-size: 1rem;
     }
 
     .custom-img {
         height: auto;
-        width: 90px;
+        width: 100px;
+        cursor: pointer;
     }
 }
+
 
 @media only screen and (max-width: 767px) {
     .custom-logo-container {
@@ -287,17 +350,23 @@ html, body {
     .custom-nav-links.show {
         display: flex;
     }
-
+    
     .custom-container {
         padding: 0 10px;
+        align-items: left;
     }
 
     .custom-text-overlay {
-        margin-top: 2rem;
+        margin-top: 1rem;
     }
 
-    .custom-text-overlay h1 {
-        font-size: 2rem;
+    .custom-first-row{
+        margin-left: 2.5rem
+    }
+
+    .custom-first-row h1 {
+        font-size: 1.5rem;
+        left: 34%;
     }
 
     .custom-text-overlay h2 {
@@ -306,12 +375,13 @@ html, body {
 
     .custom-img {
         height: auto;
-        width: calc(15% - 10px); /* Disminueix la mida de la imatge */
+        width: 75px;
+        cursor: pointer;
     }
 
     .custom-second-row img {
-        flex: 1 1 calc(15% - 10px); /* Ajust per tenir 3 imatges per fila */
+        flex: 1 1 calc(15% - 10px); 
         margin: 5px;
-        max-width: calc(15% - 10px); /* Ajust per tenir 3 imatges per fila */
+        max-width: 75px;
     }
 }

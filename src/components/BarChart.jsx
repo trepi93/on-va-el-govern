@@ -18,10 +18,9 @@ echarts.use([
   CanvasRenderer
 ]);
 
-const BarChart = ({ filteredData }) => {
+const BarChart = ({ filteredData, selectedMinisterData }) => {
   const chartRef = useRef(null);
 
-  // Función para obtener los actos por conseller y ordenarlos de más a menos
   const getActesPerConseller = () => {
     const actesPerConseller = {};
 
@@ -34,13 +33,12 @@ const BarChart = ({ filteredData }) => {
       }
     });
 
-    // Convertimos a array y ordenamos de más a menos
     return Object.keys(actesPerConseller)
       .map(conseller => ({
         conseller,
         actes: actesPerConseller[conseller]
       }))
-      .sort((a, b) => a.actes - b.actes); // Orden descendente
+      .sort((a, b) => a.actes - b.actes); 
   };
 
   useEffect(() => {
@@ -56,20 +54,10 @@ const BarChart = ({ filteredData }) => {
     if (chartRef.current) {
       const myChart = echarts.init(chartRef.current, 'dark');
 
-      const data = getActesPerConseller(); // Obtenemos los datos ordenados dentro del componente
+      const data = getActesPerConseller(); 
 
       const option = {
         backgroundColor: 'transparent', 
-        title: {
-          text: 'Actes per càrrec',
-          left: 'center', 
-          textStyle: {
-            fontFamily: 'Poppins', 
-            fontWeight: 'bold',
-            fontSize: 18
-          },
-          top: "3%"
-        },
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -77,7 +65,7 @@ const BarChart = ({ filteredData }) => {
           }
         },
         grid: {
-          top: '10%',
+          top: '3%',
           left: '3%',
           right: '6%',
           bottom: '5%',
@@ -132,9 +120,37 @@ const BarChart = ({ filteredData }) => {
         window.removeEventListener('resize', resizeChart);
       };
     }
-  }, [filteredData]); // El efecto ahora depende de los datos filtrados
+  }, [filteredData]);
 
-  return <div className="bar-chart" ref={chartRef} style={{ width: '100%', height: '100%' }} />;
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      {selectedMinisterData && (
+        <div className="minister-info" style={{
+          backgroundColor: '#222',
+          padding: '10px',
+          borderRadius: '10px',
+          color: '#fff',
+          marginBottom: '15px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <img src={selectedMinisterData.photo} alt={selectedMinisterData.name} style={{
+            borderRadius: '50%',
+            width: '50px',
+            height: '50px',
+            marginRight: '10px'
+          }} />
+          <div>
+            <h3 style={{ margin: 0 }}>{selectedMinisterData.name}</h3>
+            <p style={{ margin: 0 }}>{selectedMinisterData.role}</p>
+            <p style={{ margin: 0 }}>Actes: {selectedMinisterData.eventCount}</p>
+          </div>
+        </div>
+      )}
+      <div ref={chartRef} style={{ width: '100%', height: selectedMinisterData ? 'calc(100% - 80px)' : '100%' }} />
+    </div>
+  );
 };
 
 export default BarChart;

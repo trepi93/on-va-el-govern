@@ -148,7 +148,74 @@ html, body {
     color: white !important;
 }
 
+.floating-filter-button {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    z-index: 2000;
+}
 
+.floating-filter-button .toggle-filter-menu {
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.floating-filter-button .toggle-filter-menu:hover {
+    background-color: #777;
+}
+
+.filter-close-button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.filter-close-button .close-filter-menu {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    padding: 0 20px 0 0;
+}
+
+.floating-filter-menu {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(46, 46, 46, 0.95);
+    padding: 10px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    max-height: 70vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+.floating-filter-menu.visible {
+    display: flex;
+    transform: translateY(0);
+}
+
+.floating-filter-menu .filter {
+    width: 100%;
+    padding: 5px 0;
+}
+
+.floating-filter-menu .form-control {
+    width: 90%;
+    margin: 0 auto;
+}
 .stats-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -168,11 +235,15 @@ html, body {
     height: 100% !important;
 }
 
-.bar-chart {
+.bar-chart, .minister-info {
     grid-column: 2 / span 1;
     grid-row: 1 / span 2;
     background-color: #222;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 
 }
 
@@ -223,6 +294,31 @@ footer {
     font-weight: bold
 }
 
+.minister-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.minister-info h3 {
+    margin: 5px 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+}
+
+.minister-info img {
+    width: 280px;  
+    height: auto; 
+    margin-bottom: 10px;
+    object-fit: cover; 
+}
 
 @media only screen and (min-width: 1440px) {
     .container {
@@ -271,6 +367,13 @@ footer {
         box-sizing: border-box; 
     }
 
+    .minister-info img {
+    width: 200px;  
+    height: auto; 
+    margin-bottom: 15px;
+    object-fit: cover; 
+}
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -283,46 +386,65 @@ footer {
         padding: 15px;
     }
 
+    .filter-container {
+        display: none;
+    }
+
     .filter-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px; 
-        justify-content: center; 
+        flex-direction: column;
         width: 100%;
-        margin-bottom: 20px;
+        gap: 30px; 
+        align-items: center;
     }
 
     .filter {
-        flex-basis: 30%; 
-        flex-grow: 0; 
-        flex-shrink: 0; 
-        box-sizing: border-box; 
+        width: 100%
+    }
+
+    .filter input, .react-select__control {
+        width: 100%;
+        text-align: center; 
+    }
+
+    .floating-filter-menu {
+        display: flex;
     }
 
     .stats-container {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
-        height: 200vh
+        height: 320vh;
     }
 
-    #map, .bar-chart, .pie-chart, .event-table {
+    #map, .bar-chart, .minister-info, .pie-chart, .event-table {
         grid-column: 1 / -1;
         grid-row: auto;
         margin-bottom: 20px;
     }
 
     #map {
-        min-height: 50vh;
+        min-height: 80vh;
     }
 
     
-    .bar-chart{
-        height: 50vh
+    .bar-chart, .minister-info{
+        min-height: 80vh;
     }
 
     .pie-chart{
-        height: 50vh;
+        min-height: 80vh;;
         overflow: hidden
+    }
+
+    .event-table{
+        min-height: 80vh;
+    }
+
+    .minister-info img {
+        width: 300px;  
+        height: auto; 
+        margin-bottom: 15px;
+        object-fit: cover; 
     }
 }
 
@@ -366,10 +488,7 @@ footer {
     }
 
     .filter-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px; 
-        margin-left: 0;
+        display: none;
     }
 
     .filter-row {
@@ -388,29 +507,52 @@ footer {
         text-align: center; 
     }
 
+    .floating-filter-menu {
+        display: flex;
+    }
+
     .stats-container {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
-        height: 200vh
+        height: 320vh;
     }
 
-    #map, .bar-chart, .pie-chart, .event-table {
+    #map, .bar-chart, .minister-info, .pie-chart, .event-table {
         grid-column: 1 / -1;
         grid-row: auto;
         margin-bottom: 20px;
     }
 
     #map {
-        min-height: 50vh;
+        min-height: 80vh;
     }
 
     
     .bar-chart{
-        height: 50vh
+        min-height: 80vh;
     }
 
     .pie-chart{
-        height: 50vh;
+        min-height: 80vh;;
         overflow: hidden
+    }
+
+    .event-table{
+        min-height: 80vh;
+    }
+}
+
+
+@media only screen and (min-width: 1024px) {
+    .floating-filter-menu {
+        display: none !important;
+    }
+
+    .floating-filter-button {
+        display: none;
+    }
+
+    .filter-container {
+        display: flex;
     }
 }

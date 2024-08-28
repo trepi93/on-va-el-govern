@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts/core';
-import { PieChart as EChartsPieChart } from 'echarts/charts';
+import { TreemapChart } from 'echarts/charts';
 import { TooltipComponent, TitleComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 
-echarts.use([TooltipComponent, TitleComponent, EChartsPieChart, CanvasRenderer]);
+echarts.use([TooltipComponent, TitleComponent, TreemapChart, CanvasRenderer]);
 
-const PieChart = ({ data, vegueria, comarca }) => {
+const Treemap = ({ data, vegueria, comarca }) => {
   const chartRef = useRef(null);
 
   const getActesPerVegueria = () => {
@@ -71,64 +71,47 @@ const PieChart = ({ data, vegueria, comarca }) => {
       let title;
 
       if (comarca) {
-        chartData = getActesPerMunicipi(); // Obtenemos los datos por municipio
-        title = 'Actes per Municipi';
+        chartData = getActesPerMunicipi(); 
+        title = 'Municipi';
       } else if (vegueria) {
-        chartData = getActesPerComarca(); // Obtenemos los datos por comarca
-        title = 'Actes per Comarca';
+        chartData = getActesPerComarca(); 
+        title = 'Comarca';
       } else {
-        chartData = getActesPerVegueria(); // Obtenemos los datos por veguería por defecto
-        title = 'Actes per Vegueria';
+        chartData = getActesPerVegueria(); 
+        title = 'Vegueria';
       }
 
       const option = {
         backgroundColor: 'transparent',
         title: {
           text: title,
-          left: 'center',
+          left: 'left',
           top: '5%',
           textStyle: {
             fontFamily: 'Poppins',
-            fontWeight: 'bold',
-            fontSize: 18,
+            fontSize: 10,
             color: '#fff'
           },
         },
         tooltip: {
-          trigger: 'item'
+          trigger: 'item',
+          formatter: '{b}: {c}', 
         },
         series: [
           {
             name: 'Actes',
-            type: 'pie',
-            radius: ['40%', '70%'],
-            top: "10%",
-            avoidLabelOverlap: true,
-            itemStyle: {
-              borderRadius: 10,
-              padAngle: 5
-            },
+            type: 'treemap',
+            data: chartData,
             label: {
               show: true,
-              position: 'outside',
-              formatter: '{b}: {c}', // Muestra el nombre y el valor
+              formatter: '{b}\n{c}', 
               fontSize: 12,
               fontFamily: 'Poppins',
               color: '#fff'
             },
-            emphasis: {
-              label: {
-                show: true,
-                fontSize: 14,
-                fontWeight: 'bold'
-              }
-            },
-            labelLine: {
-              show: true,
-              length: 10,
-              length2: 10
-            },
-            data: chartData
+            itemStyle: {
+              borderColor: '#fff'
+            }
           }
         ]
       };
@@ -150,7 +133,12 @@ const PieChart = ({ data, vegueria, comarca }) => {
     }
   }, [data, vegueria, comarca]);
 
-  return <div ref={chartRef} style={{ width: '100%', height: '100%' }} />;
+  return (
+    <div 
+      ref={chartRef} 
+      style={{ width: '100%', height: '100%' }} 
+    />
+  );
 };
 
-export default PieChart;
+export default Treemap;
